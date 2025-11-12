@@ -27,6 +27,9 @@ class Sequencia{
             dados[quantDados] = novoElemento;
             quantDados++;
         }
+        void removerUltimoDado(){
+            quantDados--;
+        }
     private:
         void aumentarCapacidade(){
             capacidade*=2;
