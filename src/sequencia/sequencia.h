@@ -36,6 +36,21 @@ class Sequencia{
             }
             return dados[index];
         }
+
+        T operator[](int index) const {
+            if(index>=quantDados || index<0){//não há elemento armazenado nesse index ou index negativo
+                std::cerr<<"Erro! Index inválido para capacidade do array";
+            }
+            return dados[index];
+        }
+
+        T& operator[](int index){
+            if(index>=quantDados || index<0){//não há elemento armazenado nesse index ou index negativo
+                std::cerr<<"Erro! Index inválido para capacidade do array";
+            }
+            return dados[index];
+        }
+
         void editarElementoViaIndex(int index, T novoElemento){
             dados[index] = novoElemento;
         }
