@@ -16,7 +16,17 @@ class Sequencia{
         ~Sequencia(){//é preciso dizer ao pc "essa memória antes alocada com valores que quero guardar está livre pra você usar e substituir por algo novo"
             delete[] dados;
         }
-        
+        int getQuantDados(){
+            return quantDados;
+        }
+
+        void adicionar(T novoElemento){
+            if(quantDados>=capacidade){
+                aumentarCapacidade();
+            }
+            dados[quantDados] = novoElemento;
+            quantDados++;
+        }
     private:
         void aumentarCapacidade(){
             capacidade*=2;
