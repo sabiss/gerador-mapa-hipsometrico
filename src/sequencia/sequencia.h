@@ -30,6 +30,12 @@ class Sequencia{
         void removerUltimoDado(){
             quantDados--;
         }
+        T buscarElementoViaIndex(int index){
+            if(index>=quantDados || index<0){//não há elemento armazenado nesse index ou index negativo
+                std::cerr<<"Erro! Index inválido para capacidade do array";
+            }
+            return dados[index];
+        }
     private:
         void aumentarCapacidade(){
             capacidade*=2;
