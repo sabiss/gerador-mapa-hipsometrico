@@ -59,8 +59,7 @@ class Sequencia{
             T *novaSequencia = new T[capacidade];//crio um novo espaço na memória com a capacidade nova
 
             for(int i = 0; i < quantDados; i++){//passo todos os dados já cadastrado pra ela
-                novaS
-                equencia[i] = dados[i];
+                novaSequencia[i] = dados[i];
             }
             delete[] dados;//limpo aquela memoria reservada;
             dados = novaSequencia;//agora o array de dados apontar pra essa nova Sequencia de capacidade maior;
