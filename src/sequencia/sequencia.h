@@ -36,6 +36,9 @@ class Sequencia{
             }
             return dados[index];
         }
+        void editarElementoViaIndex(int index, T novoElemento){
+            dados[index] = novoElemento;
+        }
     private:
         void aumentarCapacidade(){
             capacidade*=2;
