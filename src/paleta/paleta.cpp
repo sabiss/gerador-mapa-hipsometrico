@@ -23,11 +23,11 @@ void Paleta::adicionarCor(const Cor& cor) {
     quantidade++;
 }
 
-int Paleta::getNumeroCor() const {
+int Paleta::obterTamanho() const {
     return quantidade;
 }
 
-Cor Paleta::getCorPorId(int id) const {
+Cor Paleta::obterCor(int id) const {
     return cores[id];
 }
 

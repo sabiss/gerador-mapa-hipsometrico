@@ -15,8 +15,8 @@ public:
     Paleta(const std::string filename);
 
     void adicionarCor(const Cor& cor);
-    int getNumeroCor() const;
-    Cor getCorPorId(int id) const;
+    int obterTamanho() const;
+    Cor obterCor(int id) const;
 
 private:
     enum hexas {
