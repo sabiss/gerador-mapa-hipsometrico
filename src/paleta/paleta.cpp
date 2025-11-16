@@ -58,9 +58,9 @@ Cor Paleta::lerCorHex(const std::string& linha) {
     }
 
     Cor cor;
-    cor.R = lerDuplaHex(hex, 0);
-    cor.G = lerDuplaHex(hex, 2);
-    cor.B = lerDuplaHex(hex, 4);
+    cor.r = lerDuplaHex(hex, 0);
+    cor.g = lerDuplaHex(hex, 2);
+    cor.b = lerDuplaHex(hex, 4);
 
     return cor;
 }
