@@ -10,18 +10,22 @@ class Paleta{
     int quantidade;
     Sequencia<Cor> cores;
 
-    private:
-        enum hexas {
-            a = 10, b, c, d, e, f
-        };
+public:
+    Paleta();
+    Paleta(const std::string filename);
 
-        int hexChar(char caractere);
-        int lerDuplaHex(const std::string& s, int i);
-        Cor lerCorHex(const std::string& linha);
+    void adicionarCor(const Cor& cor);
+    int getNumeroCor() const;
+    Cor getCorPorId(int id) const;
 
-    public:
-        Paleta();
-        Paleta(const std::string filename);
+private:
+    enum hexas {
+        a = 10, b, c, d, e, f
+    };
+
+    int hexChar(char caractere);
+    int lerDuplaHex(const std::string& s, int i);
+    Cor lerCorHex(const std::string& linha);
 };
 
 #endif

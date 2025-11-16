@@ -1,5 +1,35 @@
 #include "paleta.h";
 
+Paleta::Paleta() {
+        quantidade = 0;
+}
+
+Paleta::Paleta(const std::string filename) {
+    quantidade = 0;
+    std::ifstream file(filename);
+
+    if (!file.is_open()) return;
+
+    std::string corHexa;
+    while (file >> corHexa) {
+        Cor cor = lerCorHex(corHexa);
+        cores.adicionar(cor);
+        quantidade++;
+    }
+}
+
+void Paleta::adicionarCor(const Cor& cor) {
+    cores.adicionar(cor);
+    quantidade++;
+}
+
+int Paleta::getNumeroCor() const {
+    return quantidade;
+}
+
+Cor Paleta::getCorPorId(int id) const {
+    return cores[id];
+}
 
 int Paleta::hexChar(char caractere) {
     if (caractere >= '0' && caractere <= '9') {
@@ -33,22 +63,4 @@ Cor Paleta::lerCorHex(const std::string& linha) {
     cor.B = lerDuplaHex(hex, 4);
 
     return cor;
-}
-
-Paleta::Paleta() {
-        quantidade = 0;
-}
-
-Paleta::Paleta(const std::string filename) {
-    quantidade = 0;
-    std::ifstream file(filename);
-
-    if (!file.is_open()) return;
-
-    std::string corHexa;
-    while (file >> corHexa) {
-        Cor cor = lerCorHex(corHexa);
-        cores.adicionar(cor);
-        quantidade++;
-    }
 }
