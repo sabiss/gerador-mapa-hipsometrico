@@ -1,9 +1,9 @@
 #include <iostream>
 
 struct Cor{
-    int R;
-    int G;
-    int B;
+    int r;
+    int g;
+    int b;
 
     //Validação das cores caso testes fossem feitos com outros arquivos não formatados
     /*public:
