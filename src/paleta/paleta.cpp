@@ -1,4 +1,4 @@
-#include "paleta.h";
+#include "paleta.h"
 
 Paleta::Paleta() {
         quantidade = 0;
@@ -28,6 +28,10 @@ int Paleta::obterTamanho() const {
 }
 
 Cor Paleta::obterCor(int id) const {
+    if (id < 0 || id >= quantidade) {
+        return Cor{0, 0, 0};
+    }
+
     return cores[id];
 }
 
@@ -45,6 +49,8 @@ int Paleta::hexChar(char caractere) {
     case 'e': return e;
     case 'f': return f;
     }
+
+    return 0;
 }
 
 int Paleta::lerDuplaHex(const std::string& s, int i) {
