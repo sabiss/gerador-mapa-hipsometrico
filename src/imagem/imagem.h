@@ -23,4 +23,10 @@ class Imagem{
                 }
             }
         }
+        ~Imagem(){
+            for(int i = 0; i < altura; i++){
+                delete[] pixels[i];
+            }
+            delete[] pixels;
+        }
 };
