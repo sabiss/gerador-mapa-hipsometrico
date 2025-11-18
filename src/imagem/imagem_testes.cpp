@@ -21,7 +21,7 @@ TEST_CASE("Testa a modificação e acesso aos pixels da imagem") {
 
 TEST_CASE("Testa a leitura de uma imagem em formato PPM") {
     Imagem img;
-    bool sucesso = img.lerPPM("imagem.ppm");
+    bool sucesso = img.lerPPM("../imagem.ppm");
     CHECK(sucesso);
     CHECK(img.obterLargura() == 3);
     CHECK(img.obterAltura() == 2);

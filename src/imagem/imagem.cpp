@@ -38,11 +38,13 @@ const Pixel& Imagem::operator()(int i, int j) const {
     return pixels[j][i];
 }
 
-// int obterLargura() const{
-// }
+int Imagem::obterLargura() const{
+    return largura;
+}
     
-// int obterAltura() const{
-// }
+int Imagem::obterAltura() const{
+    return altura;
+}
 
 bool Imagem::lerPPM(const std::string filename){
     std::ifstream file(filename);
