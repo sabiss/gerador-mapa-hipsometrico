@@ -1,5 +1,8 @@
+#ifndef PIXEL_H
+#define PIXEL_H
+
 #include "../paleta/cor.h"
 
-struct Pixel{
-    Cor corPixel;
-};
+using Pixel = Cor;
+
+#endif

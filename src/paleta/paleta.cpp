@@ -1,14 +1,14 @@
 #include "paleta.h"
 
 Paleta::Paleta() {
-        quantidade = 0;
+    quantidade = 0;
 }
 
 Paleta::Paleta(const std::string filename) {
-    quantidade = 0;
     std::ifstream file(filename);
-
     if (!file.is_open()) return;
+    
+    quantidade = 0;
 
     std::string corHexa;
     while (file >> corHexa) {
@@ -40,14 +40,13 @@ int Paleta::hexChar(char caractere) {
         return caractere - '0';
     } 
     
-    // É necessário validar se o caractere é uma letra minúscula?
     switch (caractere) {
-    case 'a': return a;
-    case 'b': return b;
-    case 'c': return c;
-    case 'd': return d;
-    case 'e': return e;
-    case 'f': return f;
+    case 'a': case 'A': return a;
+    case 'b': case 'B': return b;
+    case 'c': case 'C': return c;
+    case 'd': case 'D': return d;
+    case 'e': case 'E': return e;
+    case 'f': case 'F': return f;
     }
 
     return 0;
