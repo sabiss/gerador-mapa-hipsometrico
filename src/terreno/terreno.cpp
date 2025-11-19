@@ -1,5 +1,7 @@
 #include "terreno.h"
 #include <cmath>//biblioteca do pow
+#include <cstdlib>//biblioteca do gerador de n° aleatório
+#include <ctime>//biblioteca do gerador de n° aleatório
 
 Terreno::Terreno(int dimensao=3) {
     dimensaoMatriz = calcularDimensao(dimensao);
@@ -20,6 +22,26 @@ Terreno::~Terreno(){
     delete[] altitudes;
     altitudes = nullptr;
 }
+
+void Terreno::gerarMapa(int dimensaoMatriz, float rugosidade){
+    float amplitude = 10.0f;
+
+    srand(time(0));//gerador de numeros
+    inicializarExtremos(amplitude);
+}
+
 int Terreno::calcularDimensao(int valorDimensao){
     return (pow(2, valorDimensao)+1);
 };
+
+void Terreno::inicializarExtremos(float amplitude){
+    altitudes[0][0] = gerarNumeroAleatorio(amplitude);
+    altitudes[0][dimensaoMatriz-1] = gerarNumeroAleatorio(amplitude);
+    altitudes[dimensaoMatriz-1][0] = gerarNumeroAleatorio(amplitude);
+    altitudes[dimensaoMatriz-1][dimensaoMatriz-1] = gerarNumeroAleatorio(amplitude);
+    
+};
+
+float Terreno::gerarNumeroAleatorio(float amplitude){
+    return (rand() / (float)RAND_MAX) * amplitude;  // 0.0 a amplitude
+}
