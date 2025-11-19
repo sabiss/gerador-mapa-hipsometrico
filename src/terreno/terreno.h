@@ -3,7 +3,7 @@
 
 class Terreno{
     float **altitudes;
-    
+
 public:
     Terreno(int dimensao);
     ~Terreno();
