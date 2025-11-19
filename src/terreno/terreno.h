@@ -3,6 +3,7 @@
 
 class Terreno{
     float **altitudes;
+    int dimensaoMatriz;
 
 public:
     Terreno(int dimensao);
@@ -13,6 +14,9 @@ public:
     int obterLargura();
     bool salvarMatriz();
     bool lerAlitudesDeArquivo();
+
+private:
+    int calcularDimensao(int valorDimensao);
 };
 
 #endif
