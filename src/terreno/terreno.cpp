@@ -39,6 +39,7 @@ void Terreno::inicializarExtremos(float amplitude){
     altitudes[0][dimensaoMatriz-1] = gerarNumeroAleatorio(amplitude);
     altitudes[dimensaoMatriz-1][0] = gerarNumeroAleatorio(amplitude);
     altitudes[dimensaoMatriz-1][dimensaoMatriz-1] = gerarNumeroAleatorio(amplitude);
+    
 };
 
 float Terreno::gerarNumeroAleatorio(float amplitude){
