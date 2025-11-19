@@ -14,6 +14,7 @@ public:
     int obterLargura();
     bool salvarMatriz();
     bool lerAlitudesDeArquivo();
+    bool lerMatriz();
 
 private:
     int calcularDimensao(int valorDimensao);
