@@ -23,6 +23,13 @@ Terreno::~Terreno(){
     altitudes = nullptr;
 }
 
+void Terreno::gerarMapa(int dimensaoMatriz, float rugosidade){
+    float amplitude = 10.0f;
+
+    srand(time(0));//gerador de numeros
+    inicializarExtremos(amplitude);
+}
+
 int Terreno::calcularDimensao(int valorDimensao){
     return (pow(2, valorDimensao)+1);
 };
