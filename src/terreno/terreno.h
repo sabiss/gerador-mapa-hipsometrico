@@ -17,6 +17,7 @@ public:
 
 private:
     int calcularDimensao(int valorDimensao);
+    float gerarNumeroAleatorio(float amplitude);
 };
 
 #endif
