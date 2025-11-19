@@ -2,7 +2,8 @@
 #define TERRENO_H
 
 class Terreno{
-
+    float **altitudes;
+    
 public:
     Terreno(int dimensao);
     ~Terreno();
