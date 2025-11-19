@@ -27,6 +27,13 @@ int Terreno::calcularDimensao(int valorDimensao){
     return (pow(2, valorDimensao)+1);
 };
 
+void Terreno::inicializarExtremos(float amplitude){
+    altitudes[0][0] = gerarNumeroAleatorio(amplitude);
+    altitudes[0][dimensaoMatriz-1] = gerarNumeroAleatorio(amplitude);
+    altitudes[dimensaoMatriz-1][0] = gerarNumeroAleatorio(amplitude);
+    altitudes[dimensaoMatriz-1][dimensaoMatriz-1] = gerarNumeroAleatorio(amplitude);
+};
+
 float Terreno::gerarNumeroAleatorio(float amplitude){
     return (rand() / (float)RAND_MAX) * amplitude;  // 0.0 a amplitude
 }

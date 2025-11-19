@@ -18,6 +18,7 @@ public:
 private:
     int calcularDimensao(int valorDimensao);
     float gerarNumeroAleatorio(float amplitude);
+    void inicializarExtremos(float amplitude);
 };
 
 #endif
