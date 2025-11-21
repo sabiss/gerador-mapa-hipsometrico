@@ -23,15 +23,23 @@ Terreno::~Terreno(){
     altitudes = nullptr;
 }
 
-void Terreno::gerarMapa(int dimensaoMatriz, float rugosidade){
+void Terreno::gerarMapa(int n, float rugosidade) {
+    int tamanho = calcularDimensao(n);
     float amplitude = 10.0f;
-
-    srand(time(0));//gerador de numeros
+    
+    srand(time(0));
     inicializarExtremos(amplitude);
-}
-
-int Terreno::calcularDimensao(int valorDimensao){
-    return (pow(2, valorDimensao)+1);
+    
+    int passo = tamanho - 1;//passo vai ser a etapa, o quadrado em questão | Passo 5 = Quaddrado 5x5
+    float amplitudeAtual = amplitude;
+    
+    while (passo >= 2) {
+        diamond(passo, amplitudeAtual);
+        square(passo, amplitudeAtual);
+        
+        amplitudeAtual *= rugosidade;
+        passo /= 2;
+    }
 };
 
 void Terreno::inicializarExtremos(float amplitude){
@@ -41,6 +49,7 @@ void Terreno::inicializarExtremos(float amplitude){
     altitudes[dimensaoMatriz-1][dimensaoMatriz-1] = gerarNumeroAleatorio(amplitude);
     
 };
+
 void Terreno::diamond(int passo, float amplitude) {
     int meioPasso = passo / 2;
     
