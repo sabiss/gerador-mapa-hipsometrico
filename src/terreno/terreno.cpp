@@ -42,6 +42,10 @@ void Terreno::gerarMapa(int n, float rugosidade) {
     }
 };
 
+float Terreno::obterAltitude(int linha, int coluna){
+    return altitudes[linha][coluna];
+}
+
 void Terreno::inicializarExtremos(float amplitude){
     altitudes[0][0] = gerarNumeroAleatorio(amplitude);
     altitudes[0][dimensaoMatriz-1] = gerarNumeroAleatorio(amplitude);
@@ -99,3 +103,4 @@ void Terreno::square(int passo, float amplitude){
 float Terreno::gerarNumeroAleatorio(float amplitude) {
     return ((rand() / (float)RAND_MAX) * 2.0f - 1.0f) * amplitude;
 }
+
