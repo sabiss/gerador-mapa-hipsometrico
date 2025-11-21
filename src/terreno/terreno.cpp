@@ -56,6 +56,37 @@ void Terreno::diamond(int passo, float amplitude) {
     }
 }
 
+void Terreno::square(int passo, float amplitude){
+    int meio = passo / 2;
+    
+    for(int x = 0; x < dimensaoMatriz; x += meio){
+        for(int y = 0; y < dimensaoMatriz; y += meio){
+            if((x % passo == 0 && y % passo == meio) ||  // Pontos verticais
+               (x % passo == meio && y % passo == 0)) {  // Pontos horizontais
+                //todos os pontos são multiplos do passo(Quadrado em questão)
+                if(altitudes[x][y] == 0.0f) {//se ainda não preencher, pra n correr o risco de sobreescrever
+                    float somatorio = 0.0f;
+                    //apesar de ser sempre 3 pontos, precisa de 4 ifs pois, em algumas configurações vai haver ponto Direita, Esquerda, Acima mas em outros Direita, Esquerda e Abaxio como em 9x9 no ponto (8,4) que é o resultado do square D, E, Acima
+                    if(x - meio >= 0) {
+                        somatorio += altitudes[x - meio][y]; // acima
+                    }
+                    if(x + meio < dimensaoMatriz) {
+                        somatorio += altitudes[x + meio][y]; // abaixo
+                    }
+                    if(y - meio >= 0) {
+                        somatorio += altitudes[x][y - meio]; // esquerda
+                    }
+                    if(y + meio < dimensaoMatriz) {
+                        somatorio += altitudes[x][y + meio]; // direita
+                    }
+                    
+                    altitudes[x][y] = (somatorio / 3.0f) + gerarNumeroAleatorio(amplitude);
+                }
+            }
+        }
+    }
+};
+
 float Terreno::gerarNumeroAleatorio(float amplitude) {
     return ((rand() / (float)RAND_MAX) * 2.0f - 1.0f) * amplitude;
 }

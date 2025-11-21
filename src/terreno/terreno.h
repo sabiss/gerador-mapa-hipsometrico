@@ -20,6 +20,7 @@ private:
     float gerarNumeroAleatorio(float amplitude);
     void inicializarExtremos(float amplitude);
     void diamond(int passo, float deslocamentoAleatorio);
+    void square(int passo, float amplitude);
     
 };
 
