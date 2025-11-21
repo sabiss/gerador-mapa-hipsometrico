@@ -42,6 +42,6 @@ void Terreno::inicializarExtremos(float amplitude){
     
 };
 
-float Terreno::gerarNumeroAleatorio(float amplitude){
-    return (rand() / (float)RAND_MAX) * amplitude;  // 0.0 a amplitude
+float Terreno::gerarNumeroAleatorio(float amplitude) {
+    return ((rand() / (float)RAND_MAX) * 2.0f - 1.0f) * amplitude;
 }
