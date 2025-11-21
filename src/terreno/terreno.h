@@ -19,6 +19,8 @@ private:
     int calcularDimensao(int valorDimensao);
     float gerarNumeroAleatorio(float amplitude);
     void inicializarExtremos(float amplitude);
+    void diamond(int passo, float deslocamentoAleatorio);
+    
 };
 
 #endif

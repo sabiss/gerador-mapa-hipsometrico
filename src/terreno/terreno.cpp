@@ -41,6 +41,20 @@ void Terreno::inicializarExtremos(float amplitude){
     altitudes[dimensaoMatriz-1][dimensaoMatriz-1] = gerarNumeroAleatorio(amplitude);
     
 };
+void Terreno::diamond(int passo, float amplitude) {
+    int meioPasso = passo / 2;
+    
+    for(int x = meioPasso; x < dimensaoMatriz - 1; x += passo) {
+        for(int y = meioPasso; y < dimensaoMatriz - 1; y += passo) {
+            float media = (altitudes[x - meioPasso][y - meioPasso] +  // superior esquerdo
+                          altitudes[x - meioPasso][y + meioPasso] +  // superior direito
+                          altitudes[x + meioPasso][y - meioPasso] +  // inferior esquerdo
+                          altitudes[x + meioPasso][y + meioPasso]) / 4.0f;  // inferior direito
+            
+            altitudes[x][y] = media + gerarNumeroAleatorio(amplitude);
+        }
+    }
+}
 
 float Terreno::gerarNumeroAleatorio(float amplitude) {
     return ((rand() / (float)RAND_MAX) * 2.0f - 1.0f) * amplitude;
