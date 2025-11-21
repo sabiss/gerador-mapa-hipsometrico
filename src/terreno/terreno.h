@@ -10,7 +10,7 @@ public:
     ~Terreno();
     void gerarMapa(int tamanhoMatriz, float fatorRugosidade);
     float obterAltitude(int linha, int coluna);
-    int obterProfundidade();
+    int obterProfundidade();//linhas
     int obterLargura();
     bool salvarMatriz();
     bool lerAlitudesDeArquivo();
