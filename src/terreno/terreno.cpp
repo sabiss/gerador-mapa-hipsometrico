@@ -46,11 +46,11 @@ int Terreno::calcularDimensao(int n){
     return static_cast<int>(std::pow(2, n)) + 1; //a pow retorna um double, mas a dimensao tem que ser int, então converto ela com um cast
 }
 
-float Terreno::obterAltitude(int linha, int coluna){
+float Terreno::obterAltitude(int linha, int coluna)const{
     return altitudes[linha][coluna];
 }
 
-int Terreno::obterProfundidade(){
+int Terreno::obterProfundidade() const{
     return dimensaoMatriz;
 }
 
