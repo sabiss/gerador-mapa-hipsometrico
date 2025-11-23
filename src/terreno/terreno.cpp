@@ -112,3 +112,7 @@ float Terreno::gerarNumeroAleatorio(float amplitude) {
     return ((rand() / (float)RAND_MAX) * 2.0f - 1.0f) * amplitude;
 }
 
+void Terreno::setAltitude(int linha, int coluna, float valor){
+    altitudes[linha][coluna] = valor;
+}
+
