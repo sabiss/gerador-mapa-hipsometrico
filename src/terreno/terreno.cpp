@@ -42,6 +42,10 @@ void Terreno::gerarMapa(int n, float rugosidade) {
     }
 };
 
+int Terreno::calcularDimensao(int n){
+    return static_cast<int>(std::pow(2, n)) + 1; //a pow retorna um double, mas a dimensao tem que ser int, então converto ela com um cast
+}
+
 float Terreno::obterAltitude(int linha, int coluna){
     return altitudes[linha][coluna];
 }
