@@ -1,4 +1,6 @@
 #include "terreno.h"
+#include "imagem.h"
+#include "paleta.h"
 #include <cmath>//biblioteca do pow
 #include <cstdlib>//biblioteca do gerador de n° aleatório
 #include <ctime>//biblioteca do gerador de n° aleatório
@@ -42,6 +44,9 @@ void Terreno::gerarMapa(int n, float rugosidade) {
     }
 };
 
+void Terreno::gerarImagem(Paleta paleta){
+    Imagem imagemMapa(dimensaoMatriz, dimensaoMatriz);
+}
 int Terreno::calcularDimensao(int n){
     return static_cast<int>(std::pow(2, n)) + 1; //a pow retorna um double, mas a dimensao tem que ser int, então converto ela com um cast
 }

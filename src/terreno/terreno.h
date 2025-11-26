@@ -1,3 +1,4 @@
+#include "paleta.h"
 #ifndef TERRENO_H
 #define TERRENO_H
 
@@ -9,9 +10,10 @@ public:
     Terreno(int dimensao);
     ~Terreno();
     void gerarMapa(int tamanhoMatriz, float fatorRugosidade);
+    void gerarImagem(Paleta paleta);
     float obterAltitude(int linha, int coluna) const;
     int obterProfundidade() const;//linhas
-    int obterLargura();
+    int obterLargura(); 
     bool salvarMatriz();
     bool lerAlitudesDeArquivo();
     bool lerMatriz();
