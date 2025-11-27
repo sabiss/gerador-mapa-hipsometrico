@@ -81,19 +81,21 @@ bool Imagem::lerCabecalho(std::ifstream &file){
 }
 
 bool Imagem::lerPixels(std::ifstream &file){
-    pixels = new Pixel*[altura];
+    Pixel **pixelsLidos = new Pixel*[altura];
 
     for(int i = 0; i < altura; i++){
-        pixels[i] = new Pixel[largura];
+        pixelsLidos[i] = new Pixel[largura];
     }
 
     for(int i = 0; i < altura; i++){
         for(int j = 0; j < largura; j++){
             int r, g, b;
             file >> r >> g >> b;
-            pixels[i][j] = {r, g, b};
+            pixelsLidos[i][j] = {r, g, b};
         }
     }
+    delete [] pixels;
+    pixels = pixelsLidos;
 
     return true;
 }
