@@ -48,6 +48,7 @@ Imagem Terreno::gerarImagem(Paleta paleta){
     Imagem imagemMapa(dimensaoMatriz, dimensaoMatriz);
     colorirImagem(paleta, imagemMapa);
     sombrear(imagemMapa);
+    return imagemMapa;
 }
 
 void Terreno::colorirImagem(Paleta paletaCores, Imagem imagem){
