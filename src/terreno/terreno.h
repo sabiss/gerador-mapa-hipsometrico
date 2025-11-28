@@ -1,4 +1,5 @@
 #include "paleta.h"
+#include "imagem.h"
 #ifndef TERRENO_H
 #define TERRENO_H
 
@@ -25,6 +26,7 @@ private:
     void diamond(int passo, float deslocamentoAleatorio);
     void square(int passo, float amplitude);
     void setAltitude(int linha, int coluna, float valor);
+    void colorirImagem(Paleta paletaCores, Imagem imagem);
 };
 
 #endif
