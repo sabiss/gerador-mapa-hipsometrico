@@ -11,7 +11,7 @@ public:
     Terreno(int dimensao);
     ~Terreno();
     void gerarMapa(int tamanhoMatriz, float fatorRugosidade);
-    void gerarImagem(Paleta paleta);
+    Imagem gerarImagem(Paleta paleta);
     float obterAltitude(int linha, int coluna) const;
     int obterProfundidade() const;//linhas
     int obterLargura(); 

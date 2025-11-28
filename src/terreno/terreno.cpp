@@ -44,7 +44,7 @@ void Terreno::gerarMapa(int n, float rugosidade) {
     }
 };
 
-void Terreno::gerarImagem(Paleta paleta){
+Imagem Terreno::gerarImagem(Paleta paleta){
     Imagem imagemMapa(dimensaoMatriz, dimensaoMatriz);
     colorirImagem(paleta, imagemMapa);
     sombrear(imagemMapa);
