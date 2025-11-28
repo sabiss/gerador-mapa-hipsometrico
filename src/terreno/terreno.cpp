@@ -47,6 +47,7 @@ void Terreno::gerarMapa(int n, float rugosidade) {
 void Terreno::gerarImagem(Paleta paleta){
     Imagem imagemMapa(dimensaoMatriz, dimensaoMatriz);
     colorirImagem(paleta, imagemMapa);
+    sombrear(imagemMapa);
 }
 
 void Terreno::colorirImagem(Paleta paletaCores, Imagem imagem){
@@ -78,6 +79,18 @@ void Terreno::colorirImagem(Paleta paletaCores, Imagem imagem){
             }
 
             imagem(linha, coluna) = paletaCores.obterCor(cor);
+        }
+    }
+}
+
+void Terreno::sombrear(Imagem imagem){
+    for(int x = 8; x > -1; x--){
+        for(int y = 8; y > -1; y--){
+            if( x - 1 > -1 && y - 1 > -1){//se o ponto da superior esquerdo existir
+                if(altitudes[x][y] < altitudes[x-1][y-1]){
+                    imagem(x, y).r = imagem(x, y).r * 0.5; 
+                }
+            }
         }
     }
 }

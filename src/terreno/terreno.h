@@ -18,6 +18,7 @@ public:
     bool salvarMatriz();
     bool lerAlitudesDeArquivo();
     bool lerMatriz();
+    void sombrear(Imagem imagem);
 
 private:
     int calcularDimensao(int valorDimensao);
