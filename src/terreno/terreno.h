@@ -10,7 +10,7 @@ class Terreno{
 public:
     Terreno(int dimensao);
     ~Terreno();
-    void gerarMapa(int tamanhoMatriz, float fatorRugosidade);
+    void gerarMapa(float fatorRugosidade);
     Imagem gerarImagem(Paleta paleta);
     float obterAltitude(int linha, int coluna) const;
     int obterProfundidade() const;//linhas
