@@ -25,8 +25,8 @@ Terreno::~Terreno(){
     altitudes = nullptr;
 }
 
-void Terreno::gerarMapa(int n, float rugosidade) {
-    int tamanho = calcularDimensao(n);
+void Terreno::gerarMapa(float rugosidade) {
+    int tamanho = dimensaoMatriz;
     float amplitude = 10.0f;
     
     srand(time(0));
