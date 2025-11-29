@@ -1,4 +1,6 @@
 #include "terreno.h"
+#include "imagem.h"
+#include "paleta.h"
 #include <cmath>//biblioteca do pow
 #include <cstdlib>//biblioteca do gerador de n° aleatório
 #include <ctime>//biblioteca do gerador de n° aleatório
@@ -41,6 +43,60 @@ void Terreno::gerarMapa(int n, float rugosidade) {
         passo /= 2;
     }
 };
+
+Imagem Terreno::gerarImagem(Paleta paleta){
+    Imagem imagemMapa(dimensaoMatriz, dimensaoMatriz);
+    colorirImagem(paleta, imagemMapa);
+    sombrear(imagemMapa);
+    return imagemMapa;
+}
+
+void Terreno::colorirImagem(Paleta paletaCores, Imagem imagem){
+    for(int linha = 0; linha < dimensaoMatriz; linha++){
+        for(int coluna = 0; coluna < dimensaoMatriz; coluna++){
+            float altitudeAtual = altitudes[linha][coluna];
+            int cor = 0;
+
+            if(altitudeAtual >=-10.0f && altitudeAtual <-8.0f){
+                cor = 0;
+            } else if(altitudeAtual >=-8.0f && altitudeAtual <-6.0f){
+                cor = 1;
+            } else if(altitudeAtual >=-6.0f && altitudeAtual <-4.0f){
+                cor = 2;
+            } else if(altitudeAtual >=-4.0f && altitudeAtual <-2.0f){
+                cor = 3;
+            } else if(altitudeAtual >=-2.0f && altitudeAtual <0.0f){
+                cor = 4;
+            }else if(altitudeAtual >=0.0f && altitudeAtual <2.0f){
+                cor = 5;
+            }else if(altitudeAtual >=2.0f && altitudeAtual <4.0f){
+                cor = 6;
+            }else if(altitudeAtual >=4.0f && altitudeAtual <6.0f){
+                cor = 7;
+            }else if(altitudeAtual >=6.0f && altitudeAtual <8.0f){
+                cor = 8;
+            }else if(altitudeAtual >=8.0f && altitudeAtual <=10.0f){
+                cor = 9;
+            }
+
+            imagem(linha, coluna) = paletaCores.obterCor(cor);
+        }
+    }
+}
+
+void Terreno::sombrear(Imagem imagem){
+    for(int x = 8; x > -1; x--){
+        for(int y = 8; y > -1; y--){
+            if( x - 1 > -1 && y - 1 > -1){//se o ponto da superior esquerdo existir
+                if(altitudes[x][y] < altitudes[x-1][y-1]){
+                    imagem(x, y).r = imagem(x, y).r * 0.5; 
+                    imagem(x, y).g = imagem(x, y).g * 0.5;
+                    imagem(x, y).b = imagem(x, y).b * 0.5;
+                }
+            }
+        }
+    }
+}
 
 int Terreno::calcularDimensao(int n){
     return static_cast<int>(std::pow(2, n)) + 1; //a pow retorna um double, mas a dimensao tem que ser int, então converto ela com um cast

@@ -1,3 +1,5 @@
+#include "paleta.h"
+#include "imagem.h"
 #ifndef TERRENO_H
 #define TERRENO_H
 
@@ -9,12 +11,14 @@ public:
     Terreno(int dimensao);
     ~Terreno();
     void gerarMapa(int tamanhoMatriz, float fatorRugosidade);
+    Imagem gerarImagem(Paleta paleta);
     float obterAltitude(int linha, int coluna) const;
     int obterProfundidade() const;//linhas
-    int obterLargura();
+    int obterLargura(); 
     bool salvarMatriz();
     bool lerAlitudesDeArquivo();
     bool lerMatriz();
+    void sombrear(Imagem imagem);
 
 private:
     int calcularDimensao(int valorDimensao);
@@ -23,6 +27,7 @@ private:
     void diamond(int passo, float deslocamentoAleatorio);
     void square(int passo, float amplitude);
     void setAltitude(int linha, int coluna, float valor);
+    void colorirImagem(Paleta paletaCores, Imagem imagem);
 };
 
 #endif
