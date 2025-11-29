@@ -90,6 +90,8 @@ void Terreno::sombrear(Imagem imagem){
             if( x - 1 > -1 && y - 1 > -1){//se o ponto da superior esquerdo existir
                 if(altitudes[x][y] < altitudes[x-1][y-1]){
                     imagem(x, y).r = imagem(x, y).r * 0.5; 
+                    imagem(x, y).g = imagem(x, y).g * 0.5;
+                    imagem(x, y).b = imagem(x, y).b * 0.5;
                 }
             }
         }
