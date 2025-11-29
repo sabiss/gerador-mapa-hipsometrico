@@ -56,6 +56,7 @@ void Terreno::colorirImagem(Paleta paletaCores, Imagem imagem){
         for(int coluna = 0; coluna < dimensaoMatriz; coluna++){
             float altitudeAtual = altitudes[linha][coluna];
             int cor = 0;
+            //a paleta deve estra organizada para a cores seguirem a ordem de: altitudes baixas para altitudes altas e deve ter no máximo 10 cores
 
             if(altitudeAtual >=-10.0f && altitudeAtual <-8.0f){
                 cor = 0;
