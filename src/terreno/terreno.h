@@ -18,7 +18,7 @@ public:
     bool salvarMatriz();
     bool lerAlitudesDeArquivo();
     bool lerMatriz();
-    void sombrear(Imagem imagem);
+    void sombrear(Imagem& imagem);
 
 private:
     int calcularDimensao(int valorDimensao);
@@ -27,7 +27,7 @@ private:
     void diamond(int passo, float deslocamentoAleatorio);
     void square(int passo, float amplitude);
     void setAltitude(int linha, int coluna, float valor);
-    void colorirImagem(Paleta paletaCores, Imagem imagem);
+    void colorirImagem(Paleta paletaCores, Imagem& imagem);
 };
 
 #endif
