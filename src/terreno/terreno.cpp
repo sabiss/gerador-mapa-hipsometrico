@@ -56,7 +56,7 @@ void Terreno::colorirImagem(Paleta paletaCores, Imagem imagem){
         for(int coluna = 0; coluna < dimensaoMatriz; coluna++){
             float altitudeAtual = altitudes[linha][coluna];
             int cor = 0;
-
+            //cor pra maior ou menor o limite da amplitude
             if(altitudeAtual >=-10.0f && altitudeAtual <-8.0f){
                 cor = 0;
             } else if(altitudeAtual >=-8.0f && altitudeAtual <-6.0f){
