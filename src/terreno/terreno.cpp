@@ -57,7 +57,7 @@ void Terreno::colorirImagem(Paleta paletaCores, Imagem& imagem){
             float altitudeAtual = altitudes[linha][coluna];
             int cor = 0;
 
-            if(altitudeAtual >=-10.0f && altitudeAtual <-8.0f){
+            if(altitudeAtual <=-10.0f){
                 cor = 0;
             } else if(altitudeAtual >=-8.0f && altitudeAtual <-6.0f){
                 cor = 1;
@@ -73,9 +73,9 @@ void Terreno::colorirImagem(Paleta paletaCores, Imagem& imagem){
                 cor = 6;
             }else if(altitudeAtual >=4.0f && altitudeAtual <6.0f){
                 cor = 7;
-            }else if(altitudeAtual >=6.0f && altitudeAtual <8.0f){
+            }else if(altitudeAtual >=6.0f && altitudeAtual <=9.0f){
                 cor = 8;
-            }else if(altitudeAtual >=8.0f && altitudeAtual <=10.0f){
+            }else if(altitudeAtual >=10.0f){
                 cor = 9;
             }
 
