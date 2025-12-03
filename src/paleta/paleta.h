@@ -17,6 +17,8 @@ public:
     void adicionarCor(const Cor& cor);
     int obterTamanho() const;
     Cor obterCor(int id) const;
+    void lerArquivo(const std::string filename);
+    void destrutorSequencia();
 
 private:
     enum hexas {
