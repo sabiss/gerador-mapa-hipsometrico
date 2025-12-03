@@ -42,6 +42,7 @@ int main(){
     terreno.gerarMapa(0.5);
     Imagem imagemMapa = terreno.gerarImagem(paleta);
     imagemMapa.salvarPPM(nomeArquivoSaidaMapa);
+    cout<<"A imagem do mapa hipsometrico foi criada";
 
     return 0;
 }
