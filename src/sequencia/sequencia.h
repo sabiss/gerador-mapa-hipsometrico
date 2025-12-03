@@ -14,7 +14,7 @@ class Sequencia{
         }
 
         ~Sequencia(){//é preciso dizer ao pc "essa memória antes alocada com valores que quero guardar está livre pra você usar e substituir por algo novo"
-            delete[] dados;
+            destrutorSequencia();
         }
         int getQuantDados(){
             return quantDados;
@@ -43,6 +43,9 @@ class Sequencia{
                 std::cerr<<"Erro! Index inválido para capacidade do array";
             }
             return dados[index];//por causa do & retorna a referência, então é editável
+        }
+        void destrutorSequencia(){
+            delete[] dados;
         }
         // T buscarElementoViaIndex(int index){
         //     if(index>=quantDados || index<0){//não há elemento armazenado nesse index ou index negativo
