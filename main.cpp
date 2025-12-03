@@ -28,12 +28,15 @@ int main(){
 
     Paleta paleta(nomeArquivoPaleta);
     
-     if (paleta.obterTamanho() < 10 || paleta.obterTamanho() > 10) {
-        cout << "ERRO: Paleta precisa ter apenas 10 cores! E tem: " 
-             << paleta.obterTamanho() << endl;
-        while(true){
+     while (paleta.obterTamanho() < 10) {
+        paleta.destrutorSequencia();
 
-        }
+        cout << "ERRO: Paleta precisa ter pelo menos 10 cores! E tem: " 
+             << paleta.obterTamanho() << endl;
+        cout <<"Informe o nome do arquivo contendo a paleta de pelo menos 10 cores:\n";
+        cin>> nomeArquivoPaleta;
+        
+        paleta.lerArquivo(nomeArquivoPaleta);
     }
     Terreno terreno(tamanhoMapa);
     terreno.gerarMapa(0.5);
