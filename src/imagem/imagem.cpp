@@ -23,11 +23,7 @@ Imagem::Imagem(int lar, int alt){
 }
 
 Imagem::~Imagem(){
-    for(int i = 0; i < altura; i++){
-        delete[] pixels[i];
-    }
-
-    delete[] pixels;
+    destrutorImagem();
 }
 
 Pixel& Imagem::operator()(int i, int j) {
@@ -66,6 +62,14 @@ bool Imagem::salvarPPM(const std::string filename){
     return true;
 }
 
+bool Imagem::destrutorImagem(){
+    for(int i = 0; i < altura; i++){
+        delete[] pixels[i];
+    }
+
+    delete[] pixels;
+}
+
 bool Imagem::lerCabecalho(std::ifstream &file){
     std::string identificador;
     file >> identificador;
@@ -94,7 +98,8 @@ bool Imagem::lerPixels(std::ifstream &file){
             pixelsLidos[i][j] = {r, g, b};
         }
     }
-    delete [] pixels;
+
+    destrutorImagem();
     pixels = pixelsLidos;
 
     return true;

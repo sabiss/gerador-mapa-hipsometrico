@@ -25,6 +25,7 @@ public:
     bool salvarPPM(const std::string filename);
 
 private:
+    bool destrutorImagem();
     bool lerCabecalho(std::ifstream &file);
     bool lerPixels(std::ifstream &file);
     bool escreverCabecalho(std::ofstream &file);
