@@ -5,7 +5,7 @@
 #include <cstdlib>//biblioteca do gerador de n° aleatório
 #include <ctime>//biblioteca do gerador de n° aleatório
 
-Terreno::Terreno(int dimensao=3) {
+Terreno::Terreno(int dimensao) {
     dimensaoMatriz = calcularDimensao(dimensao);
 
     altitudes = new float*[dimensaoMatriz];
@@ -25,8 +25,8 @@ Terreno::~Terreno(){
     altitudes = nullptr;
 }
 
-void Terreno::gerarMapa(int n, float rugosidade) {
-    int tamanho = calcularDimensao(n);
+void Terreno::gerarMapa(float rugosidade) {
+    int tamanho = dimensaoMatriz;
     float amplitude = 10.0f;
     
     srand(time(0));
@@ -51,13 +51,13 @@ Imagem Terreno::gerarImagem(Paleta paleta){
     return imagemMapa;
 }
 
-void Terreno::colorirImagem(Paleta paletaCores, Imagem imagem){
+void Terreno::colorirImagem(Paleta paletaCores, Imagem& imagem){
     for(int linha = 0; linha < dimensaoMatriz; linha++){
         for(int coluna = 0; coluna < dimensaoMatriz; coluna++){
             float altitudeAtual = altitudes[linha][coluna];
             int cor = 0;
-            //cor pra maior ou menor o limite da amplitude
-            if(altitudeAtual >=-10.0f && altitudeAtual <-8.0f){
+
+            if(altitudeAtual <=-10.0f){
                 cor = 0;
             } else if(altitudeAtual >=-8.0f && altitudeAtual <-6.0f){
                 cor = 1;
@@ -73,9 +73,9 @@ void Terreno::colorirImagem(Paleta paletaCores, Imagem imagem){
                 cor = 6;
             }else if(altitudeAtual >=4.0f && altitudeAtual <6.0f){
                 cor = 7;
-            }else if(altitudeAtual >=6.0f && altitudeAtual <8.0f){
+            }else if(altitudeAtual >=6.0f && altitudeAtual <=9.0f){
                 cor = 8;
-            }else if(altitudeAtual >=8.0f && altitudeAtual <=10.0f){
+            }else if(altitudeAtual >=10.0f){
                 cor = 9;
             }
 
@@ -84,9 +84,9 @@ void Terreno::colorirImagem(Paleta paletaCores, Imagem imagem){
     }
 }
 
-void Terreno::sombrear(Imagem imagem){
-    for(int x = 8; x > -1; x--){
-        for(int y = 8; y > -1; y--){
+void Terreno::sombrear(Imagem& imagem){
+    for(int x = dimensaoMatriz-1; x > -1; x--){
+        for(int y = dimensaoMatriz-1; y > -1; y--){
             if( x - 1 > -1 && y - 1 > -1){//se o ponto da superior esquerdo existir
                 if(altitudes[x][y] < altitudes[x-1][y-1]){
                     imagem(x, y).r = imagem(x, y).r * 0.5; 

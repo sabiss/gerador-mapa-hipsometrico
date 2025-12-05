@@ -14,13 +14,10 @@ int main(){
     cout <<"Informe o tamanho do mapa hipsometrico:\n";
     cin >> tamanhoMapa;
 
-    if (tamanhoMapa < 0) {
-        while(true){
-            cout << "ERRO: Tamanho deve ser entre 1 e 10\n";
-            cout <<"Informe o tamanho do mapa hipsometrico:\n";
-            cin >> tamanhoMapa;
-            if(tamanhoMapa>0){break;}
-        }
+    while(tamanhoMapa < 0){
+        cout << "ERRO: Tamanho deve ser entre 1 e 10\n";
+        cout <<"Informe o tamanho do mapa hipsometrico:\n";
+        cin >> tamanhoMapa;
     }
 
     cout<<"Informe o nome desejado para o arquivo da imagem do mapa:\n";
@@ -28,12 +25,12 @@ int main(){
 
     Paleta paleta(nomeArquivoPaleta);
     
-     while (paleta.obterTamanho() < 10 || paleta.obterTamanho() > 10) {
+     while (paleta.obterTamanho() < 10) {
         paleta.destrutorSequencia();
 
-        cout << "ERRO: Paleta precisa ter apenas 10 cores! E tem: " 
+        cout << "ERRO: Paleta precisa ter pelo menos 10 cores! E tem: " 
              << paleta.obterTamanho() << endl;
-        cout <<"Informe o nome do arquivo contendo a paleta de 10 cores:\n";
+        cout <<"Informe o nome do arquivo contendo a paleta de pelo menos 10 cores:\n";
         cin>> nomeArquivoPaleta;
         
         paleta.lerArquivo(nomeArquivoPaleta);
@@ -42,6 +39,7 @@ int main(){
     terreno.gerarMapa(0.5);
     Imagem imagemMapa = terreno.gerarImagem(paleta);
     imagemMapa.salvarPPM(nomeArquivoSaidaMapa);
+    cout<<"A imagem do mapa hipsometrico foi criada";
 
     return 0;
 }
