@@ -14,13 +14,10 @@ int main(){
     cout <<"Informe o tamanho do mapa hipsometrico:\n";
     cin >> tamanhoMapa;
 
-    if (tamanhoMapa < 0) {
-        while(true){
-            cout << "ERRO: Tamanho deve ser entre 1 e 10\n";
-            cout <<"Informe o tamanho do mapa hipsometrico:\n";
-            cin >> tamanhoMapa;
-            if(tamanhoMapa>0){break;}
-        }
+    while(tamanhoMapa < 0){
+        cout << "ERRO: Tamanho deve ser entre 1 e 10\n";
+        cout <<"Informe o tamanho do mapa hipsometrico:\n";
+        cin >> tamanhoMapa;
     }
 
     cout<<"Informe o nome desejado para o arquivo da imagem do mapa:\n";
