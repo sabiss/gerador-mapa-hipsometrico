@@ -1,5 +1,5 @@
-#include "paleta.h"
-#include "imagem.h"
+#include "../paleta/paleta.h"
+#include "../imagem/imagem.h"
 #ifndef TERRENO_H
 #define TERRENO_H
 
@@ -10,17 +10,20 @@ class Terreno{
 public:
     Terreno(int dimensao);
     ~Terreno();
+    float& operator()(int i, int j);
+    const float& operator()(int i, int j) const;
     void gerarMapa(int tamanhoMatriz, float fatorRugosidade);
     Imagem gerarImagem(Paleta paleta);
     float obterAltitude(int linha, int coluna) const;
     int obterProfundidade() const;//linhas
     int obterLargura(); 
-    bool salvarMatriz();
-    bool lerAlitudesDeArquivo();
-    bool lerMatriz();
+    bool salvarMatriz(const std::string& filename);
+    bool lerMatriz(std::ifstream &file);
     void sombrear(Imagem imagem);
 
-private:
+public:
+    bool destrutorTerreno();
+    bool escreverMatriz(std::ofstream &file);
     int calcularDimensao(int valorDimensao);
     float gerarNumeroAleatorio(float amplitude);
     void inicializarExtremos(float amplitude);

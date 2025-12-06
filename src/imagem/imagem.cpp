@@ -68,6 +68,7 @@ bool Imagem::destrutorImagem(){
     }
 
     delete[] pixels;
+    return true;
 }
 
 bool Imagem::lerCabecalho(std::ifstream &file){
@@ -106,9 +107,9 @@ bool Imagem::lerPixels(std::ifstream &file){
 }
 
 bool Imagem::escreverCabecalho(std::ofstream &file) {
-    file << "P3" << std::endl;
-    file << largura << " " << altura << std::endl;
-    file << "255" << std::endl;
+    file << "P3" << '\n';
+    file << largura << " " << altura << '\n';
+    file << "255" << '\n';
 
     return true;
 }
@@ -117,7 +118,7 @@ bool Imagem::escreverPixels(std::ofstream &file) {
     for (int i = 0; i < altura; i++) {
         for (int j = 0; j < largura; j++) {
             Pixel& p = (*this)(j, i);
-            file << p.r << " " << p.g << " " << p.b << std::endl;
+            file << p.r << " " << p.g << " " << p.b << '\n';
         }
     }
 
