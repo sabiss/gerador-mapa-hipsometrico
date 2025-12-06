@@ -26,7 +26,7 @@ public:
     bool lerMatriz();
     
 
-public:
+private:
     bool destrutorTerreno();
     bool escreverMatriz(std::ofstream &file);
     int calcularDimensao(int valorDimensao);
