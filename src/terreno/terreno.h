@@ -13,13 +13,18 @@ public:
     float& operator()(int i, int j);
     const float& operator()(int i, int j) const;
     void gerarMapa(int tamanhoMatriz, float fatorRugosidade);
+    void gerarMapa(float fatorRugosidade);
     Imagem gerarImagem(Paleta paleta);
     float obterAltitude(int linha, int coluna) const;
     int obterProfundidade() const;//linhas
     int obterLargura(); 
     bool salvarMatriz(const std::string& filename);
     bool lerMatriz(std::ifstream &file);
-    void sombrear(Imagem imagem);
+    void sombrear(Imagem& imagem);
+    bool salvarMatriz();
+    bool lerAlitudesDeArquivo();
+    bool lerMatriz();
+    
 
 public:
     bool destrutorTerreno();
@@ -30,7 +35,7 @@ public:
     void diamond(int passo, float deslocamentoAleatorio);
     void square(int passo, float amplitude);
     void setAltitude(int linha, int coluna, float valor);
-    void colorirImagem(Paleta paletaCores, Imagem imagem);
+    void colorirImagem(Paleta paletaCores, Imagem& imagem);
 };
 
 #endif
