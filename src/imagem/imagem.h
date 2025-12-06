@@ -17,10 +17,8 @@ public:
 
     Pixel& operator()(int i, int j);
     const Pixel& operator()(int i, int j) const;
-
     int obterLargura() const;
     int obterAltura() const;
-
     bool lerPPM(const std::string filename);
     bool salvarPPM(const std::string filename);
 

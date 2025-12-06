@@ -2,7 +2,9 @@
 #include "../doctest.h"
 #include "terreno.h"
 
-//deixei os métodos privados públicos antes de testar
+// Você precisará criar testes adicionais para cobrir os métodos privados da classe.
+// Por exemplo, você pode criar testes para os métodos das etapas Square e Diamond
+// Você pode torná-los públicos temporariamente para fins de teste ou usar técnicas como "friend testing"
 
 TEST_CASE("Testa a criação de um terreno") {//mudei por que não fazia sentido a criação de um terreno de uma célula só, pois não haverá diamond nem square
   Terreno terreno(0); // 2^0 + 1 = 2
@@ -74,6 +76,77 @@ TEST_CASE("Teste Square - Valores Fixos Sem Aleatoriedade") {
     CHECK(terreno.obterAltitude(2, 1) == doctest::Approx(31.6667f)); // (30 + 40 + 25)/3 = 95/3
 }
 
-// Você precisará criar testes adicionais para cobrir os métodos privados da classe.
-// Por exemplo, você pode criar testes para os métodos das etapas Square e Diamond
-// Você pode torná-los públicos temporariamente para fins de teste ou usar técnicas como "friend testing".
+TEST_CASE("Testa se salvarMatriz salva o arquivo corretamente") {
+    Terreno terreno(2); // matriz 5x5
+    terreno.setAltitude(0, 0, 1.0f);
+    terreno.setAltitude(0, 1, 2.0f);
+    terreno.setAltitude(0, 2, 3.0f);
+    terreno.setAltitude(0, 3, 4.0f);
+    terreno.setAltitude(0, 4, 5.0f);
+
+    std::string filename = "teste_salvar.txt";
+
+    CHECK(terreno.salvarMatriz(filename) == true);
+
+    std::ifstream f(filename);
+    CHECK(f.is_open() == true);
+
+    float v1, v2;
+    f >> v1;
+    f >> v2;
+
+    CHECK(v1 == doctest::Approx(1.0f));
+    CHECK(v2 == doctest::Approx(2.0f));
+}
+
+TEST_CASE("Testa se lerMatriz carrega valores corretos") {
+    std::string filename = "teste_entrada.txt";
+
+    {
+        std::ofstream file(filename);
+        for (int i = 0; i < 25; i++) {
+            file << i * 1.5f << "\n";
+        }
+    }
+
+    Terreno terreno(2);
+
+    std::ifstream file(filename);
+    CHECK(file.is_open() == true);
+
+    CHECK(terreno.lerMatriz(file) == true);
+
+    CHECK(terreno.obterAltitude(0,0) == doctest::Approx(0.0f));
+    CHECK(terreno.obterAltitude(0,1) == doctest::Approx(1.5f));
+    CHECK(terreno.obterAltitude(2,2) == doctest::Approx(1.5f * 12));
+    CHECK(terreno.obterAltitude(4,4) == doctest::Approx(1.5f * 24));
+}
+
+TEST_CASE("Testa salvar e ler mantendo integridade da matriz") {
+    Terreno original(2);
+
+    float contador = 0.0f;
+    for (int i = 0; i < original.obterProfundidade(); i++) {
+        for (int j = 0; j < original.obterProfundidade(); j++) {
+            original.setAltitude(i, j, contador);
+            contador += 1.0f;
+        }
+    }
+
+    std::string filename = "teste_integridade.txt";
+    CHECK(original.salvarMatriz(filename) == true);
+
+    Terreno carregado(2);
+    std::ifstream file(filename);
+    CHECK(file.is_open() == true);
+
+    CHECK(carregado.lerMatriz(file) == true);
+
+    // Comparar matriz inteira
+    for (int i = 0; i < original.obterProfundidade(); i++) {
+        for (int j = 0; j < original.obterProfundidade(); j++) {
+            CHECK(original.obterAltitude(i,j) ==
+                  doctest::Approx(carregado.obterAltitude(i,j)));
+        }
+    }
+}

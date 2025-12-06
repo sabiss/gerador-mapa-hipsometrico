@@ -1,3 +1,5 @@
+#ifndef COR_H
+#define COR_H
 #include <iostream>
 
 struct Cor{
@@ -23,3 +25,5 @@ struct Cor{
             }
         }*/
 };
+
+#endif

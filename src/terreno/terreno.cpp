@@ -1,6 +1,6 @@
 #include "terreno.h"
-#include "imagem.h"
-#include "paleta.h"
+#include "../paleta/paleta.h"
+#include "../imagem/imagem.h"
 #include <cmath>//biblioteca do pow
 #include <cstdlib>//biblioteca do gerador de n° aleatório
 #include <ctime>//biblioteca do gerador de n° aleatório
@@ -18,11 +18,15 @@ Terreno::Terreno(int dimensao) {
 };
 
 Terreno::~Terreno(){
-    for(int linha = 0; linha < dimensaoMatriz; linha++){
-        delete[] altitudes[linha];
-    }
-    delete[] altitudes;
-    altitudes = nullptr;
+    destrutorTerreno();
+}
+
+float& Terreno::operator()(int i, int j) {
+    return altitudes[i][j];
+}
+
+const float& Terreno::operator()(int i, int j) const {
+    return altitudes[i][j];
 }
 
 void Terreno::gerarMapa(float rugosidade) {
@@ -32,7 +36,7 @@ void Terreno::gerarMapa(float rugosidade) {
     srand(time(0));
     inicializarExtremos(amplitude);
     
-    int passo = tamanho - 1;//passo vai ser a etapa, o quadrado em questão | Passo 5 = Quaddrado 5x5
+    int passo = tamanho - 1;//passo vai ser a etapa, o quadrado em questão | Passo 5 = Quadrado 5x5
     float amplitudeAtual = amplitude;
     
     while (passo >= 2) {
@@ -84,6 +88,35 @@ void Terreno::colorirImagem(Paleta paletaCores, Imagem& imagem){
     }
 }
 
+bool Terreno::lerMatriz(std::ifstream& file){
+    float** altitudesLidas = new float*[dimensaoMatriz];
+
+    for (int i = 0; i < dimensaoMatriz; i++)
+    altitudesLidas[i] = new float[dimensaoMatriz];
+
+    for (int i = 0; i < dimensaoMatriz; i++) {
+        for (int j = 0; j < dimensaoMatriz; j++) {
+            file >> altitudesLidas[i][j];
+
+            if (!file) return false;
+        }
+    }
+
+    destrutorTerreno();
+    altitudes = altitudesLidas;
+
+    return true;
+}
+
+bool Terreno::salvarMatriz(const std::string& filename){
+    std::ofstream file(filename);
+    if (!file.is_open()) return false;
+
+    if (!escreverMatriz(file)) return false;
+
+    return true;
+}
+
 void Terreno::sombrear(Imagem& imagem){
     for(int x = dimensaoMatriz-1; x > -1; x--){
         for(int y = dimensaoMatriz-1; y > -1; y--){
@@ -96,6 +129,27 @@ void Terreno::sombrear(Imagem& imagem){
             }
         }
     }
+}
+
+bool Terreno::destrutorTerreno(){
+    for(int linha = 0; linha < dimensaoMatriz; linha++){
+        delete[] altitudes[linha];
+    }
+    delete[] altitudes;
+    altitudes = nullptr;
+
+    return true;
+}
+
+bool Terreno::escreverMatriz(std::ofstream &file){
+    for (int i = 0; i < dimensaoMatriz; i++) {
+        for (int j = 0; j < dimensaoMatriz; j++) {
+            float& altitude = (*this)(i, j);
+            file << altitude << '\n';
+        }
+    }
+
+    return true;
 }
 
 int Terreno::calcularDimensao(int n){
